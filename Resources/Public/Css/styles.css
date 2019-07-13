@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+
+.wtf-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #00000038;
+}
+
+.day {
+    margin-bottom: 9em;
+}
+
+h5 small {
+    display: block;
+}
+
+.bg-soup {
+    color: #fff;
+    background-color: #493d2c !important;
+}
+
+.card-img-top {
+    width: 100%;
+}
+
+.card {
+    box-shadow: 0 0px 89px -15px #000;
+    border: none;
+}
+
+h2, h1 {
+    color: #fff;
+    padding-bottom: 12px;
+    text-shadow: 0 0 20px #000;
+    text-align: center;
+    font-family: 'Indie Flower', cursive;
+}
+
+body {
+    background-image: url(../Images/wood.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+h2 .text-muted {
+    color: #ffffffb5 !important;
+}
+
+.card small.text-muted {
+    color: #00000082 !important;
+    position: absolute;
+    right: 13px;
+    bottom: 13px;
+}
+
+.card.bg-soup small.text-muted, .card.bg-success small.text-muted {
+    color: rgba(255, 255, 255, 0.51) !important;
+}
+
+.list-container {
+    margin-top: 3%;
+}
+
+header {
+    margin-top: 5%;
+}
+
+a {
+    color: #28a745;
+}
+
+p.foot-note {
+    color: #fff;
+    font-family: 'Indie Flower', cursive;
+    font-size: 21px;
+    margin-bottom: 4em;
+}
+
+img.placeholder-img {
+    filter: brightness(0);
+    margin: 4px auto;
+    opacity: 0.08;
+}
+
+.day.marked .meal {
+    opacity: 0.4;
+    filter: saturate(0);
+}
+
+.day.marked .meal.marked {
+    opacity: 1;
+    filter: saturate(1);
+}
+
+button.mark {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    border-radius: 50%;
+    cursor: pointer;
+    line-height: 20px;
+    padding: 0;
+    font-weight: bold;
+    font-size: 21px;
+    overflow: hidden;
+    display: none;
+    background: #48ade8;
+    border: none;
+}
+
+.meal:not(.bg-soup):hover button.mark, .meal.marked button.mark {
+    display: block;
+}
+
+.meal:hover .block-image {
+    display: block;
+}
+
+.no-meals {
+    font-family: 'Indie Flower', cursive;
+    color: #fff;
+    font-size: 45px;
+    text-align: center;
+}
+
+a.block-image {
+    color: #00000040;
+    font-size: 12px;
+    position: absolute;
+    top: 10px;
+    right: 39px;
+    display: none;
+}
+
+h1 img {
+    margin-right: -18px;
+}

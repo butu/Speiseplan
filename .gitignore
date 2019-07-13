@@ -1,0 +1,7 @@
+# IntelliJ project files
+.idea
+logs
+vendor
+usage
+Resources/cache
+Resources/Private/RawData

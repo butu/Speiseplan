@@ -1,0 +1,44 @@
+<div class="meal card p-0 col-12
+                            {f:if(condition: '{meal.vegitarian}',then:'text-white bg-success')}
+                          {f:if(condition: '{meal.soup}',then:'bg-soup')}
+                          {f:if(condition: '{meal.soup}',then:'col-md-3')}
+                            " data-id="{meal.id}">
+    <f:if condition="{meal.imageUrl}">
+        <f:then>
+            <img src="{meal.imageUrl}" class="card-img-top" alt="{meal.completeTitle}">
+            <a href="?action=blockImage&src={meal.imageUrl}" class="block-image" title="Bild blockieren">Bild
+                blockieren</a>
+        </f:then>
+        <f:else>
+            <img src="/Resources/Public/Images/logo.png" class="placeholder-img"
+                 alt="{meal.completeTitle}">
+        </f:else>
+    </f:if>
+
+    <div class="card-body">
+        <h5 class="card-title">
+            {meal.title}
+            <f:if condition="{meal.subtitle}">
+                <small>{meal.subtitle}</small>
+            </f:if>
+        </h5>
+        <f:if condition="{meal.vegitarian}">
+            <span class="badge badge-pill badge-light">Vegi</span>
+        </f:if>
+        <f:if condition="{meal.soup}">
+            <span class="badge badge-pill badge-warning">Suppe</span>
+        </f:if>
+        <!--<p class="card-text">This is a wider card with supporting text below as a natural lead-in to-->
+        <!--additional-->
+        <!--content. This card has even longer content than the first to show that equal height-->
+        <!--action.</p>-->
+
+        <button class="mark" title="Markieren"></button>
+        <p class="card-text">
+            <a href="https://www.google.com/search?q={meal.completeTitle}"
+               class="badge wtf-badge badge-pill badge-info" target="_blank"
+               title="Was ist das?">?</a>
+            <small class="text-muted">{meal.formattedPrice}</small>
+        </p>
+    </div>
+</div>

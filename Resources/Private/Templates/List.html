@@ -1,0 +1,63 @@
+<f:layout name="Default"/>
+<f:section name="content">
+    <header class="container ">
+        <h1 class="mx-auto">
+            <img src="/Resources/Public/Images/logo.png" alt="Speiseplan" width="70">
+            Speiseplan</h1>
+    </header>
+    <div class="container list-container" id="meal-app">
+        <f:for each="{days}" key="date" as="day">
+            <f:if condition="{day.old}">
+                <f:else>
+                    <div class="day container">
+                        <h2>
+                            <f:if condition="{day.today}">
+                                <f:then>
+                                    Heute
+                                </f:then>
+                                <f:else>
+                                    <f:if condition="{day.tomorrow}">
+                                        <f:then>
+                                            Morgen
+                                        </f:then>
+                                        <f:else>
+                                            <!--@formatter:off-->
+                                            {day.title}<small class="text-muted">, {day.formattedDate}</small>
+                                            <!--@formatter:on-->
+                                        </f:else>
+                                    </f:if>
+                                </f:else>
+                            </f:if>
+                        </h2>
+                        <f:if condition="{day.meals}">
+                            <f:then>
+								<f:if condition="{day.meals.1.title} != 'geschlossen'">						
+									<f:then>
+									<div class="row card-deck">
+										<f:for each="{day.meals}" as="meal">
+											<f:render partial="Meal" arguments="{meal:meal}"/>
+										</f:for>
+									</div>
+									</f:then>
+									<f:else>
+                                		<p class="no-meals">-</p>
+									</f:else>
+								</f:if>
+                            </f:then>
+                            <f:else>
+                                <p class="no-meals">-</p>
+                            </f:else>
+                        </f:if>
+                    </div>
+                </f:else>
+            </f:if>
+        </f:for>
+    </div>
+    <div class="container">
+        <div class="row">
+            <p class="foot-note mx-auto">code and design - <a href="http://www.bu2media.com" target="_blank">benjamin
+                butschell</a></p>
+        </div>
+    </div>
+</f:section>
+

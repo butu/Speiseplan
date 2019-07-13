@@ -1,0 +1,23 @@
+{
+  "name": "bube/speiseplan",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Benjamin Butschell",
+      "email": "ichbingenial@gmail.com"
+    }
+  ],
+  "require": {
+    "phpoffice/phpword": "^0.16.0",
+    "henck/rtf-to-html": "dev-master",
+    "typo3fluid/fluid": "^2.6",
+    "odannyc/google-image-search": "^1.0",
+    "cosenary/simple-php-cache": "dev-master",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bube\\Speiseplan\\": "Classes/"
+    }
+  }
+}
