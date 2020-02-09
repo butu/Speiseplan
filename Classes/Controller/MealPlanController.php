@@ -97,20 +97,17 @@ class MealPlanController
         }
         $this->cache->store('blockedimages', $this->blockedImages);
         $this->cache->store('images', $this->cachedImages);
-        $this->cache->store('days', null);
+        $this->cache->store($this->getFileHash($this->getFiles(self::$rawDataPath)), null);
         header('location: /');
     }
 
-    public function changeImageAction($mealTitle, $isSoup, $imageSrc)
+    public function changeImageAction($mealTitle, $imageSrc)
     {
-        $this->getImageUrl($mealTitle, $isSoup);
-        foreach ($this->cachedImages as $meal => $url) {
-            if ($imageSrc === $url) {
-                $this->cachedImages[$meal] = $imageSrc;
-            }
+        if (is_array(getimagesize($imageSrc))) {
+            $this->cachedImages[md5($mealTitle)] = $imageSrc;
+            $this->cache->store('images', $this->cachedImages);
+            $this->cache->store($this->getFileHash($this->getFiles(self::$rawDataPath)), null);
         }
-        $this->cache->store('images', $this->cachedImages);
-        $this->cache->store('days', null);
         header('location: /');
     }
 

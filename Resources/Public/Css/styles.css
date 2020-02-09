@@ -115,7 +115,7 @@ button.mark {
     display: block;
 }
 
-.meal:hover .block-image {
+.meal:hover .replace-image {
     display: block;
 }
 
@@ -126,15 +126,26 @@ button.mark {
     text-align: center;
 }
 
-a.block-image {
+.modal-header {
+    color: #00000040;
+}
+
+.replace-image {
     color: #00000040;
     font-size: 12px;
     position: absolute;
     top: 10px;
     right: 39px;
     display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
 }
 
 h1 img {
     margin-right: -18px;
+}
+h5 small {
+    opacity: 0.5;
 }

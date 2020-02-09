@@ -55,3 +55,12 @@ $('button.mark').on('click', function (event) {
     }
     mealList.render();
 });
+$('.replace-image').on('click', function (event) {
+    var mealId = $(this).closest('.meal').attr('data-id');
+    if (mealList.marked(mealId)) {
+        mealList.removeMeal(mealId);
+    } else {
+        mealList.addMeal(mealId);
+    }
+    mealList.render();
+});

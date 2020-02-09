@@ -6,15 +6,13 @@
     <f:if condition="{meal.imageUrl}">
         <f:then>
             <img src="{meal.imageUrl}" class="card-img-top" alt="{meal.completeTitle}">
-            <a href="?action=blockImage&src={meal.imageUrl}" class="block-image" title="Bild blockieren">Bild
-                blockieren</a>
         </f:then>
         <f:else>
             <img src="/Resources/Public/Images/logo.png" class="placeholder-img"
                  alt="{meal.completeTitle}">
         </f:else>
     </f:if>
-
+    <f:render partial="ReplaceImage" arguments="{meal:meal}"/>
     <div class="card-body">
         <h5 class="card-title">
             {meal.title}

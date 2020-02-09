@@ -1,11 +1,14 @@
 <?php
+
+use Bube\Speiseplan\Controller\MealPlanController;
+
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 require __DIR__ . '/vendor/autoload.php';
 
 
-$controller = new \Bube\Speiseplan\Controller\MealPlanController();
-$action = isset($_GET['action']) ? $_GET['action'] : '';
+$controller = new MealPlanController();
+$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
 
 switch ($action) {
     case 'api':
@@ -16,8 +19,9 @@ switch ($action) {
         $controller->blockImageAction($src);
         break;
     case 'changeImage':
-        $src = $_GET['src'];
-        $controller->changeImageAction($src);
+        $src = $_REQUEST['src'];
+        $mealName = $_REQUEST['mealName'];
+        $controller->changeImageAction($mealName, $src);
         break;
     default:
         echo $controller->listAction();
