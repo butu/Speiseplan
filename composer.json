@@ -13,7 +13,8 @@
     "typo3fluid/fluid": "^2.6",
     "odannyc/google-image-search": "^1.0",
     "cosenary/simple-php-cache": "dev-master",
-    "ext-json": "*"
+    "ext-json": "*",
+    "ext-dom": "*"
   },
   "autoload": {
     "psr-4": {

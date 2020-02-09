@@ -5,6 +5,7 @@ namespace Bube\Speiseplan\Controller;
 use Bube\Speiseplan\Model\Day;
 use Bube\Speiseplan\Model\Meal;
 use Cache;
+use DateTime;
 use DOMDocument;
 use odannyc\GoogleImageSearch\ImageSearch;
 use RtfHtml;
@@ -17,6 +18,7 @@ class MealPlanController
     const TIMESPAN = 1;
     const MEAL = 2;
     const DAY = 3;
+    protected static $rawDataPath = 'Resources/Private/RawData/';
 
     protected $trashLines = [
         'Buder Buder Buder Buder Buder Buder Buder Buder Buder',
@@ -68,19 +70,16 @@ class MealPlanController
 
     public function listAction()
     {
-        $files = [
-            #'Speiseplan KW 22-23 Eybl.rtf',
-            'Speiseplan KW 26-27 Eybl.rtf'
-        ];
-        #$days = null;
-        $days = $this->cache->retrieve('days');
+        $files = $this->getFiles(self::$rawDataPath);
+        $days = $this->cache->retrieve($this->getFileHash($files));
+
         if ($days === null) {
             $lines = [];
             foreach ($files as $file) {
                 $lines = array_merge($lines, $this->parseRtf($file));
             }
             $days = $this->buildDays($lines);
-            $this->cache->store('days', $days);
+            $this->cache->store($this->getFileHash($files), $days);
         }
 
         return $this->renderView([
@@ -119,7 +118,7 @@ class MealPlanController
     {
         // load rtf
         $reader = new RtfReader();
-        $rtf = file_get_contents('Resources/Private/RawData/' . $fileName);
+        $rtf = file_get_contents(self::$rawDataPath . date('Y') . '/' . $fileName);
         $reader->Parse($rtf);
 
         // convert rtf to html and parse html
@@ -131,7 +130,17 @@ class MealPlanController
         foreach ($dom->getElementsByTagName('p') as $node) {
             $line = strip_tags($dom->saveHTML($node));
             $line = trim(preg_replace('/\s\s+/', ' ', $line));
-            $lines[] = $line;
+
+            // explode all the incoming lines into sublines, if we need to
+            $lines = array_merge($lines,
+                explode($this->blankPhrases[0],
+                    str_replace(
+                        $this->blankPhrases,
+                        $this->blankPhrases[0],
+                        $line
+                    )
+                )
+            );
         }
         return $lines;
     }
@@ -343,5 +352,25 @@ class MealPlanController
 
         header('Content-Type: application/json');
         return json_encode($days);
+    }
+
+    private function getFiles($path)
+    {
+        $files = array();
+
+        // load the newest two rtf files
+        $dir = opendir($path . date('Y') . '/');
+        while (false !== ($file = readdir($dir))) {
+            if (!in_array($file, ['.', '..']) && strpos($file, '.rtf') !== false) {
+                $files[] = $file;
+            }
+        }
+        natsort($files);
+        return array_slice(array_reverse($files), 0, 2);
+    }
+
+    private function getFileHash($files)
+    {
+        return 'days_' . md5(implode('', $files) . date('Y'));
     }
 }
