@@ -72,7 +72,7 @@ class MealPlanController
     {
         $files = $this->getFiles(self::$rawDataPath);
         $days = $this->cache->retrieve($this->getFileHash($files));
-
+        $days = null;
         if ($days === null) {
             $lines = [];
             foreach ($files as $file) {
@@ -363,7 +363,7 @@ class MealPlanController
             }
         }
         natsort($files);
-        return array_slice(array_reverse($files), 0, 2);
+        return array_reverse(array_slice(array_reverse($files), 0, 3));
     }
 
     private function getFileHash($files)
