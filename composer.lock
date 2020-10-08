@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d936a48569a6299484d31765957469cf",
+    "content-hash": "a0ed3193062e6ebad006cc8d502a4764",
     "packages": [
         {
             "name": "cosenary/simple-php-cache",
@@ -302,11 +302,17 @@
                 "reference": "22abbad59b43ebde9e49e6a7be1b93b87ba4b992",
                 "shasum": ""
             },
+            "require": {
+                "ext-mbstring": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "7"
+            },
             "type": "library",
             "autoload": {
-                "classmap": [
-                    "rtf-html-php.php"
-                ]
+                "psr-4": {
+                    "RtfHtmlPhp\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1068,6 +1074,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2017-11-27T05:48:46+00:00"
         },
         {
@@ -1209,6 +1216,7 @@
                 "mock",
                 "xunit"
             ],
+            "abandoned": true,
             "time": "2017-06-30T09:13:00+00:00"
         },
         {
@@ -1859,7 +1867,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "backendtea@gmail.com"
+                    "email": "BackEndTea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -1933,16 +1941,16 @@
         },
         {
             "name": "typo3fluid/fluid",
-            "version": "2.6.0",
+            "version": "2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TYPO3/Fluid.git",
-                "reference": "e3533d0b80e4020cf0de7a546efaae25866f898b"
+                "reference": "9ef6a8ffff2e812025fc0701b4ce72eea6911a3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TYPO3/Fluid/zipball/e3533d0b80e4020cf0de7a546efaae25866f898b",
-                "reference": "e3533d0b80e4020cf0de7a546efaae25866f898b",
+                "url": "https://api.github.com/repos/TYPO3/Fluid/zipball/9ef6a8ffff2e812025fc0701b4ce72eea6911a3d",
+                "reference": "9ef6a8ffff2e812025fc0701b4ce72eea6911a3d",
                 "shasum": ""
             },
             "require": {
@@ -1968,7 +1976,7 @@
                 "LGPL-3.0-or-later"
             ],
             "description": "The TYPO3 Fluid template rendering engine",
-            "time": "2018-12-07T14:46:13+00:00"
+            "time": "2019-05-07T07:07:18+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -2064,6 +2072,7 @@
                 "escaper",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-escaper",
             "time": "2018-04-25T15:48:53+00:00"
         }
     ],
@@ -2076,6 +2085,10 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": []
+    "platform": {
+        "ext-json": "*",
+        "ext-dom": "*"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
